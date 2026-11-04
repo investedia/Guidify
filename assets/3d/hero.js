@@ -1,7 +1,9 @@
-// Homepage hero: the solid Guidify G. On scroll it turns and its parts fly to the product titles.
-import { startFlight } from './flight.js';
+// Homepage hero: the solid Guidify G, extruded from the traced logo, with a soft floor shadow.
+import { mount } from './common.js';
+import { variants } from './logo3d.js';
 
 const el = document.getElementById('hero-stage');
 if (el) {
-  startFlight(el).then((ok) => { if (ok) el.classList.add('is-3d'); });
+  const data = await (await fetch('assets/3d/g-outline.json')).json();
+  mount(el, (ctx) => variants.solid(ctx, data), { z: 8, fov: 30 });
 }
