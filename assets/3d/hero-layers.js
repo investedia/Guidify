@@ -6,10 +6,10 @@ const DEPTH = 0.26;
 const extrude = {
   depth: DEPTH,
   bevelEnabled: true,
-  bevelThickness: 0.035,
-  bevelSize: 0.03,
-  bevelSegments: 4,
-  curveSegments: 4,
+  bevelThickness: 0.008,
+  bevelSize: 0.006,
+  bevelSegments: 2,
+  curveSegments: 12,
 };
 const tones = [0xf6f6f6, 0xd9d9d9, 0xbcbcbc, 0xe8e8e8];
 
