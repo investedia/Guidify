@@ -162,3 +162,7 @@ h1, h2, h3, p { margin: 0; }
 #flight { position: fixed; inset: 0; width: 100% !important; height: 100% !important; pointer-events: none; z-index: 0; }
 main, .site-header, .site-footer { position: relative; z-index: 1; }
 .stage.is-3d .fallback { display: none; }
+
+/* Hero: show only the 3D render. The flat logo appears only if WebGL is unavailable. */
+.stage .fallback { display: none; }
+.stage.is-static .fallback { display: block; }
