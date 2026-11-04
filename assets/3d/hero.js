@@ -1,4 +1,4 @@
-// Homepage hero: the Guidify G as particles that flow to the products on scroll.
+// Homepage hero: the solid Guidify G. On scroll it turns and its parts fly to the product titles.
 import { startFlight } from './flight.js';
 
 const el = document.getElementById('hero-stage');
