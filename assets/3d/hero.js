@@ -1,9 +1,7 @@
-// Homepage hero: the Guidify G in Layers form, built from the traced logo outline.
-import { mount } from './common.js';
-import { buildLayers } from './hero-layers.js';
+// Homepage hero: the Guidify G as particles that flow to the products on scroll.
+import { startFlight } from './flight.js';
 
 const el = document.getElementById('hero-stage');
 if (el) {
-  const data = await (await fetch('assets/3d/g-outline.json')).json();
-  mount(el, (ctx) => buildLayers(ctx, data), { z: 8, fov: 30 });
+  startFlight(el).then((ok) => { if (ok) el.classList.add('is-3d'); });
 }

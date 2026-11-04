@@ -157,3 +157,8 @@ h1, h2, h3, p { margin: 0; }
 .index-row a:last-child { border-right: 0; }
 .index-row a:not(:first-child) { padding-left: 24px; }
 .index-row a::after { margin-left: auto; }
+
+/* Particle flight: a page-wide canvas behind the content. The G sits in the hero stage. */
+#flight { position: fixed; inset: 0; width: 100% !important; height: 100% !important; pointer-events: none; z-index: 0; }
+main, .site-header, .site-footer { position: relative; z-index: 1; }
+.stage.is-3d .fallback { display: none; }
