@@ -169,8 +169,8 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
 
 /* Footer social row: round monochrome icon buttons, in the spirit of TradingView's footer */
 .social { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
-.social-btn { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--bg-2); color: var(--fg-2); transition: color var(--ease), border-color var(--ease), background var(--ease), transform var(--ease); }
-.social-btn svg { width: 17px; height: 17px; fill: currentColor; }
+.social-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line-2); background: var(--bg-2); color: #d4d4d4; transition: color var(--ease), border-color var(--ease), background var(--ease), transform var(--ease); }
+.social-btn svg { display: block; width: 18px; height: 18px; flex: none; }
 .social-btn:hover, .social-btn:focus-visible { color: var(--bg); background: var(--fg); border-color: var(--fg); transform: translateY(-2px); }
 .footer-email { font-size: 15px; color: var(--fg-2); margin-top: 4px; transition: color var(--ease); }
 .footer-email:hover { color: var(--fg); }
