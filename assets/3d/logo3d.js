@@ -5,10 +5,10 @@ const DEPTH = 0.26;
 const extrudeOpts = {
   depth: DEPTH,
   bevelEnabled: true,
-  bevelThickness: 0.035,
-  bevelSize: 0.03,
-  bevelSegments: 4,
-  curveSegments: 4,
+  bevelThickness: 0.014,
+  bevelSize: 0.01,
+  bevelSegments: 3,
+  curveSegments: 12,
 };
 
 function pieceGeometries(THREE, data) {
@@ -29,16 +29,28 @@ export const variants = {
     shadowFloor(THREE, scene, -1.55);
     const group = new THREE.Group();
     scene.add(group);
-    const mat = new THREE.MeshStandardMaterial({ color: 0xf2f2f2, roughness: 0.32, metalness: 0.2, envMapIntensity: 1.0 });
-    pieceGeometries(THREE, data).forEach((geo) => {
+    const mat = new THREE.MeshPhysicalMaterial({ color: 0xf2f2f2, roughness: 0.3, metalness: 0.15, clearcoat: 0.6, clearcoatRoughness: 0.2, envMapIntensity: 1.0 });
+    const parts = pieceGeometries(THREE, data).map((geo, i) => {
       const m = new THREE.Mesh(geo, mat);
       m.castShadow = true;
       m.receiveShadow = true;
       group.add(m);
+      return { m, i, cur: 0 };
     });
     group.scale.setScalar(2.0);
     return {
       update(t, p, s, reduce) {
+        // Each part animates on its own: a gentle staggered float at rest,
+        // and on scroll the parts step apart in depth one after another.
+        parts.forEach((P) => {
+          const idle = reduce ? 0 : Math.sin(t * 0.8 - P.i * 0.9) * 0.025;
+          const sc = Math.min(1, window.scrollY / (window.innerHeight * 0.45));
+          const want = Math.min(1, Math.max(0, sc * 1.4 - P.i * 0.15));
+          P.cur += (want - P.cur) * (reduce ? 1 : 0.08);
+          const k = P.cur;
+          P.m.position.set(0, idle + (P.i - 1.5) * 0.05 * k, (P.i - 1.5) * 0.55 * k);
+          P.m.rotation.set((P.i % 2 ? -1 : 1) * 0.12 * k, (P.i - 1.5) * 0.18 * k, 0);
+        });
         group.rotation.y = 0.5 + p.x * 0.4 + (reduce ? 0 : Math.sin(t * 0.3) * 0.25) + s * 0.6;
         group.rotation.x = p.y * 0.15;
         group.position.y = reduce ? 0 : Math.sin(t * 0.5) * 0.04;
