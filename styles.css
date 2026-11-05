@@ -174,3 +174,30 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
 .social-btn:hover, .social-btn:focus-visible { color: var(--bg); background: var(--fg); border-color: var(--fg); transform: translateY(-2px); }
 .footer-email { font-size: 15px; color: var(--fg-2); margin-top: 4px; transition: color var(--ease); }
 .footer-email:hover { color: var(--fg); }
+
+/* Ecosystem: two products, one company */
+.eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.eco-card { display: flex; flex-direction: column; gap: 14px; padding: 32px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); transition: border-color var(--ease), transform var(--ease); }
+.eco-card:hover, .eco-card:focus-visible { border-color: var(--line-2); transform: translateY(-2px); }
+.eco-card .pill { align-self: flex-start; }
+.eco-card h3 { font-size: 32px; font-weight: 500; letter-spacing: -.03em; }
+.eco-card p { color: var(--fg-2); }
+.eco-link { margin-top: auto; font-weight: 500; }
+
+/* Services */
+.service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.service { padding: 32px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-2); display: flex; flex-direction: column; gap: 12px; transition: border-color var(--ease); }
+.service:hover { border-color: var(--line-2); }
+.service h3 { font-size: 22px; font-weight: 500; letter-spacing: -.02em; }
+.service p { color: var(--fg-2); }
+
+/* Showcase frames: clear, clickable previews with a visible call to action */
+.frame-link { display: block; color: inherit; position: relative; cursor: pointer; }
+.frame-link::before { content: attr(data-cta); position: absolute; top: 46px; left: 16px; z-index: 2; height: 24px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 999px; background: var(--fg); color: var(--bg); font-size: 12px; font-weight: 500; opacity: 0; transform: translateY(-4px); transition: opacity var(--ease), transform var(--ease); }
+.frame-link:hover::before, .frame-link:focus-visible::before { opacity: 1; transform: none; }
+.frame-link:focus-visible { outline: 1px solid var(--fg); outline-offset: 4px; }
+
+@media (max-width: 720px) {
+  .eco-grid, .service-grid { grid-template-columns: 1fr; }
+  .eco-card, .service { padding: 24px; }
+}
