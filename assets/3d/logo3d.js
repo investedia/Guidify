@@ -42,9 +42,10 @@ export const variants = {
       update(t, p, s, reduce) {
         // Each part animates on its own: a gentle staggered float at rest,
         // and on scroll the parts step apart in depth one after another.
+        const sc = Math.min(1, window.scrollY / (window.innerHeight * 0.45));
         parts.forEach((P) => {
           const idle = reduce ? 0 : Math.sin(t * 0.8 - P.i * 0.9) * 0.025;
-          const sc = Math.min(1, window.scrollY / (window.innerHeight * 0.45));
+
           const want = Math.min(1, Math.max(0, sc * 1.4 - P.i * 0.15));
           P.cur += (want - P.cur) * (reduce ? 1 : 0.08);
           const k = P.cur;
